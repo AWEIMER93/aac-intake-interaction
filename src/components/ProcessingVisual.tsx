@@ -70,7 +70,7 @@ const ProcessingVisual: React.FC<ProcessingVisualProps> = ({ file }) => {
               className="text-primary"
             />
             <circle
-              className="progress-ring"
+              className="progress-ring text-primary"
               cx="50"
               cy="50"
               r="45"
@@ -81,7 +81,6 @@ const ProcessingVisual: React.FC<ProcessingVisualProps> = ({ file }) => {
               strokeDashoffset={strokeDashoffset}
               strokeLinecap="round"
               transform="rotate(-90 50 50)"
-              className="text-primary"
             />
           </svg>
           <div className="absolute inset-0 flex items-center justify-center">
