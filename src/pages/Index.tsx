@@ -43,44 +43,60 @@ const Index = () => {
   };
   
   const simulateProcessing = (file: UploadedFile) => {
-    // Mock data for demonstration
+    // Mock data using the Gemini AI prompt format
     const mockResult: ProcessedResult = {
-      clientName: 'Alex Morgan',
+      clientName: 'Jordan Smith, 14 years old',
       communicationNeeds: [
-        'Non-verbal communication with limited motor control',
-        'Uses eye gaze and head movements as primary control methods',
-        'Requires symbol-based AAC with text-to-speech capability',
-        'Vocabulary needs focus on medical, daily activities, and academic concepts'
+        'Limited verbal speech, requires tablet-based AAC',
+        'Bilingual needs (English & Spanish)',
+        'Prefers visual symbols with minimal text',
+        'Color-coding helps with navigation',
+        'Requires large button support due to motor control limitations'
       ],
-      medicalHistory: 'Client has cerebral palsy affecting all limbs with choreoathetoid movements. Cognitive abilities are age-appropriate. Vision and hearing are within normal limits. Previous experience with eye-tracking devices has been positive.',
+      medicalHistory: 'Patient has cerebral palsy affecting fine motor control, particularly in the upper extremities. Cognitive abilities are age-appropriate. Auditory processing is intact, with normal hearing. Visual acuity is normal with corrective lenses.',
       recommendations: [
         {
-          category: 'Access Method',
-          details: 'Recommend eye tracking technology with head tracking as backup. Configure dwelling times between 800-1200ms based on client testing. Calibration should be performed in different lighting conditions.',
+          category: 'Picture & Symbol Themes',
+          details: 'Friendly, youthful icons with neutral designs. Color-coded categories for intuitive navigation. Large buttons incorporating PCS (Picture Communication Symbols). High contrast visuals for improved visibility.',
           priority: 'high'
         },
         {
-          category: 'Vocabulary Organization',
-          details: 'Implement core vocabulary with fringe vocabulary categorized by context (school, home, medical). Use Visual Scene Displays for narrative contexts. Include specific medical terminology related to client\'s treatment.',
-          priority: 'medium'
-        },
-        {
-          category: 'Symbol System',
-          details: 'PCS symbols preferred, with high-contrast option enabled. Symbol size should be minimum 2cm x 2cm with spacing of 0.5cm. Test SymbolStix as alternative if needed.',
-          priority: 'medium'
-        },
-        {
-          category: 'Output Options',
-          details: 'Configure text-to-speech with age and gender appropriate voice. Include option for different voice outputs based on urgency of message. Enable message banking for frequently used phrases.',
+          category: 'Basic Needs',
+          details: 'Suggested phrases:\n- "I am hungry." / "Tengo hambre."\n- "I need to use the bathroom." / "Necesito ir al baño."\n- "Help me, please!" / "¡Ayúdame, por favor!"\n- "I need a break." / "Necesito un descanso."\n- "I want to drink water." / "Quiero beber agua."\n- "I\'m tired." / "Estoy cansado/a."',
           priority: 'high'
         },
         {
-          category: 'Mounting & Positioning',
-          details: 'Wheelchair mount with adjustable arm to accommodate various positions throughout the day. Consider alternate mounting for bed use. Ensure positioning does not interfere with eye gaze camera.',
+          category: 'Social Communications',
+          details: 'Suggested phrases:\n- "Hi! How are you?" / "¡Hola! ¿Cómo estás?"\n- "I feel happy." / "Me siento feliz."\n- "Can we be friends?" / "¿Podemos ser amigos?"\n- "That\'s funny!" / "¡Eso es gracioso!"\n- "I like talking to you." / "Me gusta hablar contigo."\n- "I\'m excited about..." / "Estoy entusiasmado/a por..."\n- "Let\'s have fun!" / "¡Divirtámonos!"',
+          priority: 'medium'
+        },
+        {
+          category: 'Academic Support',
+          details: 'Suggested phrases:\n- "What\'s the answer?" / "¿Cuál es la respuesta?"\n- "I need help with my homework." / "Necesito ayuda con mi tarea."\n- "Let\'s read together." / "Leamos juntos."\n- "I like science experiments!" / "¡Me gustan los experimentos de ciencia!"\n- "Can you explain that again?" / "¿Puedes explicarlo de nuevo?"\n- "I have a question." / "Tengo una pregunta."\n- "I understand." / "Entiendo."',
+          priority: 'medium'
+        },
+        {
+          category: 'Daily Activities',
+          details: 'Suggested phrases:\n- "What\'s next on my schedule?" / "¿Qué sigue en mi horario?"\n- "It\'s time to do my chores." / "Es hora de hacer mis deberes."\n- "I need to brush my teeth." / "Necesito cepillarme los dientes."\n- "Let\'s go outside." / "Salgamos afuera."\n- "I want to watch TV." / "Quiero ver televisión."\n- "Time for my medicine." / "Hora de mi medicina."\n- "I\'m ready to go." / "Estoy listo/a para ir."',
+          priority: 'high'
+        },
+        {
+          category: 'Emergency Communication',
+          details: 'Suggested phrases:\n- "I am in pain." / "Tengo dolor."\n- "I can\'t breathe!" / "¡No puedo respirar!"\n- "Call my caregiver." / "Llama a mi cuidador."\n- "I feel dizzy." / "Me siento mareado/a."\n- "I need my medicine." / "Necesito mi medicina."\n- "Something is wrong!" / "¡Algo está mal!"\n- "Help me now!" / "¡Ayúdame ahora!"',
+          priority: 'high'
+        },
+        {
+          category: 'Interface Modifications',
+          details: 'Implement bilingual toggle feature (English/Spanish). Use large buttons (minimum 2cm×2cm) with 0.5cm spacing. Configure visual themes with high contrast colors. Set up a simplified navigation structure with color-coded categories.',
+          priority: 'medium'
+        },
+        {
+          category: 'Additional Features',
+          details: 'Voice Preference: Youthful, gender-neutral tone\nBilingual Support: Full English-Spanish toggle capability\nSymbol & Text Balance: 80% symbols with 20% supporting text\nSmart Home Integration: Basic commands for lights, TV, and music\nAccessibility Feature: Adjustable touch sensitivity settings',
           priority: 'low'
         }
       ],
-      additionalNotes: 'Family has expressed strong interest in an integrated system that can control environmental elements (TV, lights) in addition to communication functions. School environment requires compatibility with Smartboard technology. Follow-up training sessions will be needed for family, school staff, and therapy team.',
+      additionalNotes: 'Jordan shows high interest in technology and responds well to interactive features. Family has requested specific vocabulary related to sports (especially basketball) and video games. School integration should include academic vocabulary aligned with 8th-grade curriculum. Consider implementing a customized keyboard layout that minimizes required movement range while maximizing commonly used phrases.',
       processedDate: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
     };
     
@@ -95,7 +111,7 @@ const Index = () => {
       setProcessedResult(mockResult);
       toast({
         title: "Processing Complete",
-        description: "AI analysis and recommendations are ready to view",
+        description: "AI analysis and AAC recommendations are ready to view",
       });
     }, 800);
   };
