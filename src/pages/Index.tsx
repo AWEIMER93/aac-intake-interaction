@@ -43,12 +43,16 @@ const Index = () => {
   };
   
   const simulateProcessing = (file: UploadedFile) => {
-    // Mock data using the Gemini AI prompt format
+    // For this simulation, randomly decide if bilingual support is needed
+    // In a real implementation, this would be determined from the uploaded intake form
+    const hasBilingualNeeds = Math.random() > 0.5; 
+    
+    // Mock data using the Gemini AI prompt format, now HIPAA compliant with redacted names
     const mockResult: ProcessedResult = {
-      clientName: 'Jordan Smith, 14 years old',
+      clientName: '[Patient], 14 years old',
       communicationNeeds: [
         'Limited verbal speech, requires tablet-based AAC',
-        'Bilingual needs (English & Spanish)',
+        hasBilingualNeeds ? 'Bilingual needs (English & Spanish)' : 'English language only',
         'Prefers visual symbols with minimal text',
         'Color-coding helps with navigation',
         'Requires large button support due to motor control limitations'
@@ -62,41 +66,41 @@ const Index = () => {
         },
         {
           category: 'Basic Needs',
-          details: 'Suggested phrases:\n- "I am hungry." / "Tengo hambre."\n- "I need to use the bathroom." / "Necesito ir al baño."\n- "Help me, please!" / "¡Ayúdame, por favor!"\n- "I need a break." / "Necesito un descanso."\n- "I want to drink water." / "Quiero beber agua."\n- "I\'m tired." / "Estoy cansado/a."',
+          details: 'Suggested phrases:\n- "I am hungry."' + (hasBilingualNeeds ? ' / "Tengo hambre."' : '') + '\n- "I need to use the bathroom."' + (hasBilingualNeeds ? ' / "Necesito ir al baño."' : '') + '\n- "Help me, please!"' + (hasBilingualNeeds ? ' / "¡Ayúdame, por favor!"' : '') + '\n- "I need a break."' + (hasBilingualNeeds ? ' / "Necesito un descanso."' : '') + '\n- "I want to drink water."' + (hasBilingualNeeds ? ' / "Quiero beber agua."' : '') + '\n- "I\'m tired."' + (hasBilingualNeeds ? ' / "Estoy cansado/a."' : ''),
           priority: 'high'
         },
         {
           category: 'Social Communications',
-          details: 'Suggested phrases:\n- "Hi! How are you?" / "¡Hola! ¿Cómo estás?"\n- "I feel happy." / "Me siento feliz."\n- "Can we be friends?" / "¿Podemos ser amigos?"\n- "That\'s funny!" / "¡Eso es gracioso!"\n- "I like talking to you." / "Me gusta hablar contigo."\n- "I\'m excited about..." / "Estoy entusiasmado/a por..."\n- "Let\'s have fun!" / "¡Divirtámonos!"',
+          details: 'Suggested phrases:\n- "Hi! How are you?"' + (hasBilingualNeeds ? ' / "¡Hola! ¿Cómo estás?"' : '') + '\n- "I feel happy."' + (hasBilingualNeeds ? ' / "Me siento feliz."' : '') + '\n- "Can we be friends?"' + (hasBilingualNeeds ? ' / "¿Podemos ser amigos?"' : '') + '\n- "That\'s funny!"' + (hasBilingualNeeds ? ' / "¡Eso es gracioso!"' : '') + '\n- "I like talking to you."' + (hasBilingualNeeds ? ' / "Me gusta hablar contigo."' : '') + '\n- "I\'m excited about..."' + (hasBilingualNeeds ? ' / "Estoy entusiasmado/a por..."' : '') + '\n- "Let\'s have fun!"' + (hasBilingualNeeds ? ' / "¡Divirtámonos!"' : ''),
           priority: 'medium'
         },
         {
           category: 'Academic Support',
-          details: 'Suggested phrases:\n- "What\'s the answer?" / "¿Cuál es la respuesta?"\n- "I need help with my homework." / "Necesito ayuda con mi tarea."\n- "Let\'s read together." / "Leamos juntos."\n- "I like science experiments!" / "¡Me gustan los experimentos de ciencia!"\n- "Can you explain that again?" / "¿Puedes explicarlo de nuevo?"\n- "I have a question." / "Tengo una pregunta."\n- "I understand." / "Entiendo."',
+          details: 'Suggested phrases:\n- "What\'s the answer?"' + (hasBilingualNeeds ? ' / "¿Cuál es la respuesta?"' : '') + '\n- "I need help with my homework."' + (hasBilingualNeeds ? ' / "Necesito ayuda con mi tarea."' : '') + '\n- "Let\'s read together."' + (hasBilingualNeeds ? ' / "Leamos juntos."' : '') + '\n- "I like science experiments!"' + (hasBilingualNeeds ? ' / "¡Me gustan los experimentos de ciencia!"' : '') + '\n- "Can you explain that again?"' + (hasBilingualNeeds ? ' / "¿Puedes explicarlo de nuevo?"' : '') + '\n- "I have a question."' + (hasBilingualNeeds ? ' / "Tengo una pregunta."' : '') + '\n- "I understand."' + (hasBilingualNeeds ? ' / "Entiendo."' : ''),
           priority: 'medium'
         },
         {
           category: 'Daily Activities',
-          details: 'Suggested phrases:\n- "What\'s next on my schedule?" / "¿Qué sigue en mi horario?"\n- "It\'s time to do my chores." / "Es hora de hacer mis deberes."\n- "I need to brush my teeth." / "Necesito cepillarme los dientes."\n- "Let\'s go outside." / "Salgamos afuera."\n- "I want to watch TV." / "Quiero ver televisión."\n- "Time for my medicine." / "Hora de mi medicina."\n- "I\'m ready to go." / "Estoy listo/a para ir."',
+          details: 'Suggested phrases:\n- "What\'s next on my schedule?"' + (hasBilingualNeeds ? ' / "¿Qué sigue en mi horario?"' : '') + '\n- "It\'s time to do my chores."' + (hasBilingualNeeds ? ' / "Es hora de hacer mis deberes."' : '') + '\n- "I need to brush my teeth."' + (hasBilingualNeeds ? ' / "Necesito cepillarme los dientes."' : '') + '\n- "Let\'s go outside."' + (hasBilingualNeeds ? ' / "Salgamos afuera."' : '') + '\n- "I want to watch TV."' + (hasBilingualNeeds ? ' / "Quiero ver televisión."' : '') + '\n- "Time for my medicine."' + (hasBilingualNeeds ? ' / "Hora de mi medicina."' : '') + '\n- "I\'m ready to go."' + (hasBilingualNeeds ? ' / "Estoy listo/a para ir."' : ''),
           priority: 'high'
         },
         {
           category: 'Emergency Communication',
-          details: 'Suggested phrases:\n- "I am in pain." / "Tengo dolor."\n- "I can\'t breathe!" / "¡No puedo respirar!"\n- "Call my caregiver." / "Llama a mi cuidador."\n- "I feel dizzy." / "Me siento mareado/a."\n- "I need my medicine." / "Necesito mi medicina."\n- "Something is wrong!" / "¡Algo está mal!"\n- "Help me now!" / "¡Ayúdame ahora!"',
+          details: 'Suggested phrases:\n- "I am in pain."' + (hasBilingualNeeds ? ' / "Tengo dolor."' : '') + '\n- "I can\'t breathe!"' + (hasBilingualNeeds ? ' / "¡No puedo respirar!"' : '') + '\n- "Call my caregiver."' + (hasBilingualNeeds ? ' / "Llama a mi cuidador."' : '') + '\n- "I feel dizzy."' + (hasBilingualNeeds ? ' / "Me siento mareado/a."' : '') + '\n- "I need my medicine."' + (hasBilingualNeeds ? ' / "Necesito mi medicina."' : '') + '\n- "Something is wrong!"' + (hasBilingualNeeds ? ' / "¡Algo está mal!"' : '') + '\n- "Help me now!"' + (hasBilingualNeeds ? ' / "¡Ayúdame ahora!"' : ''),
           priority: 'high'
         },
         {
           category: 'Interface Modifications',
-          details: 'Implement bilingual toggle feature (English/Spanish). Use large buttons (minimum 2cm×2cm) with 0.5cm spacing. Configure visual themes with high contrast colors. Set up a simplified navigation structure with color-coded categories.',
+          details: (hasBilingualNeeds ? 'Implement bilingual toggle feature (English/Spanish). ' : '') + 'Use large buttons (minimum 2cm×2cm) with 0.5cm spacing. Configure visual themes with high contrast colors. Set up a simplified navigation structure with color-coded categories.',
           priority: 'medium'
         },
         {
           category: 'Additional Features',
-          details: 'Voice Preference: Youthful, gender-neutral tone\nBilingual Support: Full English-Spanish toggle capability\nSymbol & Text Balance: 80% symbols with 20% supporting text\nSmart Home Integration: Basic commands for lights, TV, and music\nAccessibility Feature: Adjustable touch sensitivity settings',
+          details: 'Voice Preference: Youthful, gender-neutral tone\n' + (hasBilingualNeeds ? 'Bilingual Support: Full English-Spanish toggle capability\n' : '') + 'Symbol & Text Balance: 80% symbols with 20% supporting text\nSmart Home Integration: Basic commands for lights, TV, and music\nAccessibility Feature: Adjustable touch sensitivity settings',
           priority: 'low'
         }
       ],
-      additionalNotes: 'Jordan shows high interest in technology and responds well to interactive features. Family has requested specific vocabulary related to sports (especially basketball) and video games. School integration should include academic vocabulary aligned with 8th-grade curriculum. Consider implementing a customized keyboard layout that minimizes required movement range while maximizing commonly used phrases.',
+      additionalNotes: 'Patient shows high interest in technology and responds well to interactive features. Family has requested specific vocabulary related to sports (especially basketball) and video games. School integration should include academic vocabulary aligned with current curriculum. Consider implementing a customized keyboard layout that minimizes required movement range while maximizing commonly used phrases.',
       processedDate: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
     };
     
